@@ -62,3 +62,36 @@ public class MultiThreadHandler implements Runnable{
 
 
 }
+  // bufferedWriter.close();
+
+    //FileWriter fileWriter = new FileWriter("Accounts.txt",true);
+    //FileOutputStream fileOutputStream = new FileOutputStream(file,true);
+
+    //PrintWriter printWriter = new PrintWriter(fileOutputStream, true);
+
+       /* public boolean signIn(String line){
+            boolean flag=true;
+            String[] user = line.split(",");
+            if(user.length !=2){
+                flag= false;
+                throw new IllegalArgumentException("Invalid input");
+            }
+            for(User u: users){
+                if(u.username.equals(user[0]) && u.password.equals(user[1])){
+                    flag= true;
+                }
+            }
+            return flag;
+        }*/
+
+           /* public boolean createUser(String line){
+                boolean flag=true;
+                String[] user = line.split(",");
+                if(user.length !=3){
+                    flag = false;
+                  throw new IllegalArgumentException("Invalid input");
+                }
+                User newUser = new User(user[0], user[1], user[2]);
+                users.add(newUser);
+                return flag;
+            }*/

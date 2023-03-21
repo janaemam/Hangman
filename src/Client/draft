@@ -1,0 +1,54 @@
+ //get message from server
+           /* while(true) {
+                String serverMessage = in.readLine();
+                if (serverMessage.equals("over")) {
+                    break;
+                } else {
+                    System.out.println(serverMessage);
+                }
+            }*/
+
+            //send username and password
+          //  String username= input.next();
+           // out.println(username);//client returns username
+
+
+
+            /*String serverMessage = in.readLine();//Server asks for name
+            System.out.println(serverMessage);
+            String name= input.next();
+            out.println(name);//Client returns name
+
+
+
+            String message = in.readLine();//Server asks for password
+            System.out.println(message);
+            String password= input.next();
+            out.println(password);//client returns password
+
+            System.out.println("weslt le hena3");
+
+            while(true){
+                while(true){
+                    String serverMessage1 = in.readLine();
+                    if (serverMessage1.equals("over")) {
+                        break;
+                    } else {
+                        System.out.println(serverMessage1);
+                        String text=input.nextLine();
+                        out.println(text);
+                    }
+                }
+            }
+*/
+          /* while (true) {
+                String serverMessage = in.readLine();
+                if (serverMessage.equals("over")) {
+                    break;
+                } else {
+                    System.out.println(serverMessage);
+                }
+            }
+            //send choice of logging in or registering
+            String choice = input.next();
+            out.println(choice);*/

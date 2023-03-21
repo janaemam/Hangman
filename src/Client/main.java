@@ -11,34 +11,21 @@ public class main {
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         while (true) {
+                while(true){
+                    String serverMessage = in.readLine();
+                    if (serverMessage.equals("over")) {
+                        break;
+                    } else {
+                        if(serverMessage.equals("needreply")){
+                            String text=input.next();
+                            out.println(text);
+                        }
+                        else{
+                            System.out.println(serverMessage);
+                        }
 
-            while (true) {
-                String serverMessage = in.readLine();
-                if (serverMessage.equals("over")) {
-                    break;
-                } else {
-                    System.out.println(serverMessage);
+                    }
                 }
-            }
-            //send choice of logging in or registering
-            String choice = input.next();
-            out.println(choice);
-
-            System.out.println("weslt le hena");
-            //get message from server
-            while(true) {
-                String serverMessage = in.readLine();
-                if (serverMessage.equals("over")) {
-                    break;
-                } else {
-                    System.out.println(serverMessage);
-                }
-            }
-
-            //send username and password
-            choice= input.next();
-            out.println(choice);
-
         }
     }
 }

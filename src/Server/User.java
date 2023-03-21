@@ -1,34 +1,33 @@
 package Server;
-
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class User {
     public static ArrayList<User> users = new ArrayList<>();
+    File file = new File("Accounts.txt");
+
+    BufferedWriter bufferedWriter= new BufferedWriter(new FileWriter(file,true));
+    Scanner reader = new Scanner(file);
     String username;
     String password;
     String name;
-    User(String username, String password, String name){
+    User () throws IOException {}
+    User( String name,String username, String password) throws IOException {
         this.username = username;
         this.password = password;
         this.name = name;
     }
 
-   /* public boolean createUser(String line){
-        boolean flag=true;
-        String[] user = line.split(",");
-        if(user.length !=3){
-            flag = false;
-          throw new IllegalArgumentException("Invalid input");
-        }
-        User newUser = new User(user[0], user[1], user[2]);
-        users.add(newUser);
-        return flag;
-    }*/
-    public boolean createUser(String username,String password,String name){
+    public String createUser(String name,String username,String password) throws IOException {
 
-        User newUser = new User(username, password, name);
+        User newUser = new User(name,username, password );
         users.add(newUser);
-        return true;
+        bufferedWriter.write(name+":"+username+":"+password+"\n");
+        bufferedWriter.flush();
+
+
+        return "User added successfully";
     }
     public String signIn(String username,String password){
         boolean correctUname=false;
@@ -55,22 +54,8 @@ public class User {
         else if(correctUname&&!correctPass){
            message= "401 Unauthorized Access";
         }
-return message;
+        return message;
     }
-   /* public boolean signIn(String line){
-        boolean flag=true;
-        String[] user = line.split(",");
-        if(user.length !=2){
-            flag= false;
-            throw new IllegalArgumentException("Invalid input");
-        }
-        for(User u: users){
-            if(u.username.equals(user[0]) && u.password.equals(user[1])){
-                flag= true;
-            }
-        }
-        return flag;
-    }*/
     public boolean usernameExists(String uname){
         boolean flag = false;
         if(users.isEmpty()){
@@ -82,5 +67,13 @@ return message;
             }
         }
         return flag;
+    }
+    public void uploadFiles() throws IOException {
+        while(reader.hasNext()){
+            String line = reader.nextLine();
+            String[] user = line.split(":");
+            User newUser = new User(user[0], user[1], user[2]);
+            users.add(newUser);
+        }
     }
 }
