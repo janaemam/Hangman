@@ -1,0 +1,64 @@
+package Server;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+
+public class MultiThreadHandler implements Runnable{
+    ArrayList<MultiThreadHandler>clients = new ArrayList<>();
+    public User user;
+    private Socket clientSocket;
+    PrintWriter out = null;
+    BufferedReader in = null;
+    MultiThreadHandler(Socket socket){
+        clients.add(this);
+        this.clientSocket = socket;
+    }
+
+    @Override
+    public void run(){
+        try {
+            out = new PrintWriter(clientSocket.getOutputStream(), true);
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out.println("Welcome to Hangman");
+            out.println("1.Register\n2.Sign In");
+            out.println("over");
+
+            String choice = in.readLine();
+            if(choice.equals("1")){
+                out.println("Enter your username, password and email separated by a comma\nJana,1235,jana@yahoo.com");
+
+                if(!user.createUser(in.readLine())){
+                    out.println("Invalid input");
+                }
+                else{
+                    out.println("User created");
+                }
+            }
+            else if(choice.equals("2")){
+                out.println("Enter your username and password separated by a comma\nJana,1235");
+                out.println("over");
+                if(!user.signIn(in.readLine())){
+                    out.println("Invalid username or password");
+                }
+                else{
+                    out.println("Welcome ");
+                }
+
+            }
+            else{
+                out.println("Invalid choice");
+            }
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+}
